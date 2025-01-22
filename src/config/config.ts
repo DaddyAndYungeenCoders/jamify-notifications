@@ -8,8 +8,8 @@ export const config: Config = {
     activemq: {
         host: process.env.ACTIVEMQ_HOST || 'localhost',
         port: parseInt(process.env.ACTIVEMQ_PORT || '61613'),
-        username: process.env.ACTIVEMQ_USERNAME || 'admin',
-        password: process.env.ACTIVEMQ_PASSWORD || 'admin',
+        username: process.env.ACTIVEMQ_USERNAME || 'myuser',
+        password: process.env.ACTIVEMQ_PASSWORD || 'mypwd',
     },
     ws: {
         notificationChannel: 'new-notification',

@@ -177,7 +177,7 @@ export class QueueService {
                         this.subscribeClient.ack(incomingNotif);
                     }
                 } catch (error) {
-                    logger.error(`Process message error: ${error}`);
+                    logger.error(`Process message error for ${JSON.stringify(body)}: ${error}`);
                     if (this.subscribeClient) {
                         this.subscribeClient.nack(incomingNotif);
                     }
@@ -190,19 +190,17 @@ export class QueueService {
      * Handles the processed notification by broadcasting it to the appropriate WebSocket room.
      * @param notification - The notification to process.
      * @returns A promise that resolves when the message is broadcasted.
-     * @throws Error if broadcasting fails.
+     * @throws Error if the notification is invalid or if the room/user does not exist.
      */
     private async handleNewNotification(notification: Notification): Promise<void> {
         logger.info(`Processing notification: ${JSON.stringify(notification)}`);
         try {
-            if (notification.roomId) {
-                notification.metadata = {
-                    channel: this.config.ws.notificationChannel
-                }
-                await this.publishNotification(notification, QueueEnum.NOTIFICATION_OUT);
+            notification.metadata = {
+                channel: this.config.ws.notificationChannel
             }
+            await this.publishNotification(notification, QueueEnum.NOTIFICATION_OUT);
         } catch (error) {
-            logger.error(`Error broadcasting message: ${error}`);
+            logger.error(`Error publishing message: ${error}`);
             throw error;
         }
     }
