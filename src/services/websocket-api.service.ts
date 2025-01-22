@@ -27,9 +27,9 @@ export class WebsocketApiService {
         const token = RequestContext.getInstance().getToken();
 
         const endpoint = notification.roomId ?
-            `/rooms/existsById/${notification.roomId}`
+            `rooms/existsById/${notification.roomId}`
             :
-            `/users/existsById/${notification.destId}`;
+            `users/existsById/${notification.destId}`;
 
         try {
             const response = await fetch(`${config.ws.baseUri}/${endpoint}`, {
