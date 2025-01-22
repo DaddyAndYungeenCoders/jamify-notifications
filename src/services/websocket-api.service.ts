@@ -1,6 +1,7 @@
 import {API} from '../models/enums/api.enum';
 import {RequestContext} from "../utils/request-context";
 import {Notification} from "../models/interfaces/notification.interface";
+import {config} from "../config/config";
 
 /**
  * Service for handling WebSocket API calls.
@@ -36,7 +37,7 @@ export class WebsocketApiService {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
+                    'x-jamify-token': `${config.ws.token}`,
                 },
             });
 

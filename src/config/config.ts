@@ -13,6 +13,7 @@ export const config: Config = {
     },
     ws: {
         notificationChannel: 'new-notification',
+        token: process.env.WS_API_TOKEN || 'token',
     },
     jwt: {
         algorithms: ['RS256'] as Algorithm[],

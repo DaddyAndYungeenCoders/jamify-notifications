@@ -12,6 +12,7 @@ export interface Config {
     };
     ws: {
         notificationChannel: string;
+        token: string;
     };
     jwt: {
         algorithms: Algorithm[];

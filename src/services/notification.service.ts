@@ -52,6 +52,7 @@ export class NotificationService {
 
         // check if room or user exists before sending to the queue
         if (await this.websocketApiService.checkRoomOrUserExistsForNotif(notification)) {
+            // if (true) {
             // Send the message to the queue
             return newNotif;
         } else {
