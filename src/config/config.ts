@@ -3,7 +3,7 @@ import {Algorithm} from "jsonwebtoken";
 
 export const config: Config = {
     mode: process.env.NODE_ENV || 'development',
-    port: parseInt(process.env.PORT || '3000'),
+    port: parseInt(process.env.PORT || '3001'),
     host: process.env.HOST || 'localhost',
     activemq: {
         host: process.env.ACTIVEMQ_HOST || 'localhost',
