@@ -1,4 +1,3 @@
-import {API} from '../models/enums/api.enum';
 import {RequestContext} from "../utils/request-context";
 import {Notification} from "../models/interfaces/notification.interface";
 import {config} from "../config/config";
@@ -33,7 +32,7 @@ export class WebsocketApiService {
             `/users/existsById/${notification.destId}`;
 
         try {
-            const response = await fetch(`${API.WS.BASE}/${endpoint}`, {
+            const response = await fetch(`${config.ws.baseUri}/${endpoint}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,13 +42,13 @@ export class WebsocketApiService {
 
             if (!response.ok) {
                 // handle error in a better way
-                throw new Error('Failed to check room or user existence');
+                throw new Error('Failed to check room or user existence : ' + JSON.stringify(response));
             } else {
                 return true;
             }
 
         } catch (error) {
-            throw new Error('Failed to check room or user existence');
+            throw new Error('Failed to check room or user existence' + error);
         }
     }
 }

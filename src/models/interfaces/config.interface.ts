@@ -13,6 +13,9 @@ export interface Config {
     ws: {
         notificationChannel: string;
         token: string;
+        baseUri: string;
+        privateRoom: string;
+        addUsersToPrivateRoom: string;
     };
     jwt: {
         algorithms: Algorithm[];

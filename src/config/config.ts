@@ -14,6 +14,9 @@ export const config: Config = {
     ws: {
         notificationChannel: 'new-notification',
         token: process.env.WS_API_TOKEN || 'token',
+        baseUri: process.env.WS_BASE_URL || 'http://localhost:3333',
+        privateRoom: '/api/rooms/private',
+        addUsersToPrivateRoom: '/api/rooms/private/add-users',
     },
     jwt: {
         algorithms: ['RS256'] as Algorithm[],
