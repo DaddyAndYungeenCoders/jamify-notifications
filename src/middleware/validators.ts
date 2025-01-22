@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response} from 'express';
-import {ChatMessage} from "../models/interfaces/notification.interface";
 import logger from "../config/logger";
 import {StatusCodes} from "http-status-codes";
+import {Notification} from "../models/interfaces/notification.interface";
 
 /**
  * Middleware to validate chat messages.
@@ -12,19 +12,12 @@ import {StatusCodes} from "http-status-codes";
  * @param {NextFunction} next - The next middleware function.
  */
 export function validateMessage(req: Request, res: Response, next: NextFunction) {
-    const message: ChatMessage = req.body;
+    const message: Notification = req.body;
 
-    if (!message.senderId || !message.content || (!message.roomId && !message.destId)) {
+    if (!message.content || (!message.roomId && !message.destId)) {
         logger.error(`Missing required fields : ${message}`);
         return res.status(StatusCodes.BAD_REQUEST).json({
             error: 'Missing required fields'
-        });
-    }
-
-    if (message.senderId === message.destId) {
-        logger.error(`Sender and destination cannot be the same : ${message}`);
-        return res.status(StatusCodes.BAD_REQUEST).json({
-            error: 'Sender and destination cannot be the same'
         });
     }
 
